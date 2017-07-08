@@ -6,26 +6,28 @@ import {
 
 const INITIAL_STATE = {
   captchaText: '',
-  trackingNumber: ''
+  trackingNumber: '',
+  trackingInfo: null,
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CAPTCHATEXT_CHANGED:
-      console.log('captcha',action.payload)
       return {
         ...state,
         captchaText: action.payload
       }
     case TRACKINGNUMBER_CHANGED:
-      console.log('tracking',action.payload)
       return {
         ...state,
         trackingNumber: action.payload
       }
     case SUBMIT_FORM:
       console.log(action.payload.data)
-      return state
+      return {
+        ...INITIAL_STATE,
+        trackingInfo: action.payload.data
+      }
     default:
       return state
   }

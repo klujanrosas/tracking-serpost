@@ -1,41 +1,51 @@
 import React, { Component } from 'react'
 import { Table } from 'reactstrap'
+import { connect } from 'react-redux'
 
 class TrackingResults extends Component {
+
+  _renderTrackingInfo() {
+    if (!this.props.trackingInfo) {
+      return (
+        <tr>
+          <th colSpan={2}>
+            You haven't searched anything yet.
+          </th>
+        </tr>
+      )
+    }
+
+    return this.props.trackingInfo.map((info, index) => {
+      return (
+        <tr>
+          <th scope="row">{info.time}</th>
+          <td>{info.event}</td>
+        </tr>
+      )
+    })
+  }
+
   render() {
     return (
       <Table inverse>
         <thead>
           <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Time</th>
+            <th>Event</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {this._renderTrackingInfo()}
         </tbody>
       </Table>
     )
   }
 }
 
-export default TrackingResults
+const mapStateToProps = state => {
+  return {
+    trackingInfo: state.form.trackingInfo
+  }
+}
+
+export default connect(mapStateToProps)(TrackingResults)
