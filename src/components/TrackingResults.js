@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 class TrackingResults extends Component {
 
-  _renderTrackingInfo() {
-    if (!this.props.trackingInfo) {
+  _renderTrackingInfo() {        
+    if (!this.props.trackingInfo || this.props.trackingInfo.length < 1) {
       return (
         <tr>
           <th colSpan={2}>
@@ -17,7 +17,7 @@ class TrackingResults extends Component {
 
     return this.props.trackingInfo.map((info, index) => {
       return (
-        <tr>
+        <tr key={info.time}>
           <th scope="row">{info.time}</th>
           <td>{info.event}</td>
         </tr>
