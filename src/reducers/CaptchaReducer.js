@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_CAPTCHA:
-      return {...state, captcha: action.payload.data.image}
+      return {...state, captcha: action.payload.data.payload.image}
     default:
       return state
   }

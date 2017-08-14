@@ -8,9 +8,11 @@ import {
   LOAD_HISTORY_INFO
 } from './types'
 
+const ROOT_URL = 'http://api.pupperapp.net/serpost'
+
 
 export const fetchCaptcha = () => {
-  const request = axios.get('http://localhost:2000/captcha')
+  const request = axios.get(`${ROOT_URL}/captcha`)
 
   return {
     type: FETCH_CAPTCHA,
@@ -54,7 +56,7 @@ export const loadHistoryInfo = (item) => {
 }
 
 export const submitForm = ({ captchaText, trackingNumber }) =>{
-  const request = axios.post('http://localhost:2000/track', {
+  const request = axios.post(`${ROOT_URL}/track`, {
     captchaText,
     trackingNumber
   })

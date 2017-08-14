@@ -17,7 +17,7 @@ class TrackingResults extends Component {
 
     return this.props.trackingInfo.map((info, index) => {
       return (
-        <tr key={info.time}>
+        <tr key={info.time + Math.random()}>
           <th scope="row">{info.time}</th>
           <td>{info.event}</td>
         </tr>
