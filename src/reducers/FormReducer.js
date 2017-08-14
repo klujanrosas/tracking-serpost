@@ -23,10 +23,9 @@ export default (state = INITIAL_STATE, action) => {
         trackingNumber: action.payload
       }
     case SUBMIT_FORM:
-      console.log(action.payload.data)
       return {
         ...INITIAL_STATE,
-        trackingInfo: action.payload.data
+        trackingInfo: action.payload.data.payload
       }
     default:
       return state
